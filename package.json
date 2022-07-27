@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acamposhd/todo-app-backend.git"
+    "url": "https://github.com/AngelaMTC/DWI_U4_backend"
   },
-  "author": "Alberto Campos",
+  "author": "Ángela María Talamantes Castañeda",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/acamposhd/todo-app-backend/issues"
+    "url": "https://github.com/AngelaMTC/DWI_U4_backend/issues"
   },
-  "homepage": "https://github.com/acamposhd/todo-app-backend#readme",
+  "homepage": "https://github.com/AngelaMTC/DWI_U4_backend#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",

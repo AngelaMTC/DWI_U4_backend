@@ -1,11 +1,11 @@
 const express = require("express");
-const Todo = require("../models/Todo");
+const Producto = require("../models/Producto");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const todos = await Todo.find({ deleted: false });
-    res.json(todos);
+    const productos = await Producto.find({ deleted: false });
+    res.json(productos);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -13,8 +13,8 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const todo = await Todo.findById(req.params.id);
-    res.json(todo);
+    const producto = await Producto.findById(req.params.id);
+    res.json(producto);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -22,13 +22,13 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const todo = new Todo({
+    const producto = new Producto({
       title: req.body.title,
       description: req.body.description,
       completed: req.body.completed,
     });
-    const todoSaved = await todo.save();
-    res.json(todoSaved);
+    const productoSaved = await producto.save();
+    res.json(productoSaved);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -36,13 +36,13 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, {
+    const updatedProducto = await Producto.findByIdAndUpdate(req.params.id, {
       title: req.body.title,
       description: req.body.description,
       completed: req.body.completed,
       updatedAt: Date.now(),
     });
-    res.json(updatedTodo);
+    res.json(updatedProducto);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -50,12 +50,12 @@ router.put("/:id", async (req, res) => {
 
 router.patch("/complete/:id", async (req, res) => {
   try {
-    const currentTodo = await Todo.findById(req.params.id);
-    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, {
-      completed: !currentTodo.completed,
+    const currentProducto = await Producto.findById(req.params.id);
+    const updatedProducto = await Producto.findByIdAndUpdate(req.params.id, {
+      completed: !currentProducto.completed,
       updatedAt: Date.now(),
     });
-    res.json(updatedTodo);
+    res.json(updatedProducto);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -63,11 +63,11 @@ router.patch("/complete/:id", async (req, res) => {
 
 router.patch("/delete/:id", async (req, res) => {
   try {
-    const todoDeleted = await Todo.findByIdAndUpdate(req.params.id, {
+    const productoDeleted = await Producto.findByIdAndUpdate(req.params.id, {
       deleted: true,
       deletedAt: Date.now(),
     });
-    res.json(todoDeleted);
+    res.json(productoDeleted);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -75,8 +75,8 @@ router.patch("/delete/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const deletedTodo = await Todo.deleteOne({ _id: req.params.id });
-    res.json(deletedTodo);
+    const deletedProducto = await Producto.deleteOne({ _id: req.params.id });
+    res.json(deletedProducto);
   } catch (error) {
     res.status(500).send(error);
   }
